@@ -36,10 +36,12 @@ Tecnologías utilizadas
 
 
 ***Validaciones incluidas***
-- El **nombre**, **apellido**, **correo**, **ciudad**, y **teléfono** son obligatorios.  
-- El **correo** debe contener @.  
+- El **nombre**, **apellido**, **correo**, **ciudad**, y **teléfono** son obligatorios.
+- El **nombre**, **apellido**, **correo** y **ciudad**, no pueden contener numeros.
+- El **telefono** no puede contener letras.
+- El **correo** debe contener "@" y ".".  
 - La **fecha de nacimiento** debe seguir el formato *dd-MM-yyyy* y no puede ser futura.  
-- Si un campo no se quiere modificar, se puede presionar **Enter** para mantener el valor actual.
+- Si un campo no se quiere modificar, se puede presionar **Enter** para mantener el valor anterior.
 
 ***IMPORTANTE***
 Conficguración de persistence.xml (ubicado en src/main/resources/META-INF/) con credenciales:
@@ -65,20 +67,16 @@ Conficguración de persistence.xml (ubicado en src/main/resources/META-INF/) con
 
 **Cómo usar**
 
-  **1)** Clona o descarga este repositorio.
+  **1)** Clonar o descargar este repositorio.
 
-  **3)** Abre el proyecto en IntelliJ IDEA.
+  **3)** Abrir el proyecto en IntelliJ IDEA.
 
-  **4)** Asegúrate de tener Java 17+ instalado y configurado.
+  **4)** Tener Java 21 instalado y configurado.
 
-  **5)** Arranca XAMPP y activa MySQL.
+  **5)** Arrancar XAMPP y activar MySQL.
 
-  **6)** Verifica o modifica las credenciales en persistence.xml.
+  **6)** Verificar o modificra las credenciales en persistence.xml.
 
-  **7)** Ejecuta la clase Main.java.
+  **7)** Ejecutar la clase Main.java.
 
   **8)** Usa el menú en consola para interactuar con la base de datos.
-
-
-***Proyecto desarrollado como práctica educativa de persistencia con JPA, Hibernate y MySQL (XAMPP).
-Realizado en IntelliJ IDEA para aprender sobre gestión de entidades, consultas JPQL y transacciones.***
