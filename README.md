@@ -44,7 +44,13 @@ Tecnologías utilizadas
 - Si un campo no se quiere modificar, se puede presionar **Enter** para mantener el valor anterior.
 
 ***IMPORTANTE***
-Conficguración de persistence.xml (ubicado en src/main/resources/META-INF/) con credenciales:
+Antes de ejecutar el proyecto, revisa y ajusta las credenciales en `persistence.xml`:
+  - La contraseña y el usuario que usa MySQL los que configuraste cuando instalaste MySQL (o XAMPP). Si no configuraste nada por defecto, el usuario será *root* y la contraseña vacía es decir "".
+
+<property name="jakarta.persistence.jdbc.user" value="TU_USUARIO"/>
+<property name="jakarta.persistence.jdbc.password" value="TU_CONTRASEÑA"/>
+
+Configuración de persistence.xml (ubicado en src/main/resources/META-INF/) con credenciales:
 
 
 
