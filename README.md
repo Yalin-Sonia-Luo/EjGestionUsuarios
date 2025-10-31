@@ -16,14 +16,14 @@ El proyecto desarrollado en **Java** permite la gestion de usuarios mediante ope
 
 Tecnologías utilizadas
 
-| Tecnología |    Descripción    |
-| **Java 21 (JDK 21) **| Lenguaje principal |
-| **JPA (Jakarta Persistence API)** | Mapeo objeto-relacional |
-| **Hibernate** | Implementación de JPA |
-| **MySQL** | Base de datos relacional |
-| **XAMPP** | Servidor local para MySQL |
-| **Maven** | Gestión de dependencias |
-| **IntelliJ IDEA** | Entorno de desarrollo |
+    | Tecnología |    Descripción    |
+    | **Java 21 (JDK 21) **| Lenguaje principal |
+    | **JPA (Jakarta Persistence API)** | Mapeo objeto-relacional |
+    | **Hibernate** | Implementación de JPA |
+    | **MySQL** | Base de datos relacional |
+    | **XAMPP** | Servidor local para MySQL |
+    | **Maven** | Gestión de dependencias |
+    | **IntelliJ IDEA** | Entorno de desarrollo |
 
 
 ***Gestión de usuarios***
@@ -44,12 +44,16 @@ Tecnologías utilizadas
 ***IMPORTANTE***
 Conficguración de persistence.xml (ubicado en src/main/resources/META-INF/) con credenciales:
 
+
+
           <persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.0">
+              **//Importante que tenga el nombre de PuClientes**
               <persistence-unit name="PuClientes" transaction-type="RESOURCE_LOCAL">
                   <class>org.example.entities.Usuario</class>
           
                   <properties>
                       <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+                      **//Importante que este en el puerto 3306
                       <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gestionclientes?serverTimezone=UTC"/>
                       <property name="jakarta.persistence.jdbc.user" value="root"/>
                       <property name="jakarta.persistence.jdbc.password" value="tu_contraseña"/>
@@ -78,5 +82,3 @@ Conficguración de persistence.xml (ubicado en src/main/resources/META-INF/) con
 
 ***Proyecto desarrollado como práctica educativa de persistencia con JPA, Hibernate y MySQL (XAMPP).
 Realizado en IntelliJ IDEA para aprender sobre gestión de entidades, consultas JPQL y transacciones.***
-
-  
