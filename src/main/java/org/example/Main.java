@@ -42,23 +42,28 @@ public class Main {
 
                 /******************** Crear ********************/
                 case 1:
+                    /******************** Nombre ********************/
                     System.out.println("Introduzca el nombre");
                     String nombre = input.nextLine();
-
-
-                    /******************** Nombre ********************/
                     //Mientras que el nombre esté vacio imprimirá el sout
-                    while (nombre.isEmpty()) {
-                        System.out.println("El nombre es obligatorio, introdúzcalo nuevamente:");
+                    while (nombre.isEmpty() || nombre.matches(".*\\d.*")) {
+                        if (nombre.isEmpty()) {
+                            System.out.println("El nombre es obligatorio, introdúzcalo nuevamente");
+                        } else {
+                            System.out.println("El nombre no puede contener números, introdúzcalo nuevamente");
+                        }
                         nombre = input.nextLine();
                     }
-
 
                     /******************** Apellido ********************/
                     System.out.println("Introduzca los apellidos");
                     String apellido = input.nextLine();
-                    while (apellido.isEmpty()) {
-                        System.out.println("El apellido es obligatorio, introdúzcalo nuevamente:");
+                    while (apellido.isEmpty() || apellido.matches(".*\\d.*")) {
+                        if (apellido.isEmpty()) {
+                            System.out.println("El apellido es obligatorio, introdúzcalo nuevamente");
+                        } else {
+                            System.out.println("El apellido no puede contener números, introdúzcalo nuevamente");
+                        }
                         apellido = input.nextLine();
                     }
 
@@ -84,8 +89,12 @@ public class Main {
                     System.out.println("Introduzca la ciudad");
                     String ciudad = input.nextLine();
 
-                    while (ciudad.isEmpty()) {
-                        System.out.println("La ciudad es obligatoria, introdúzcala nuevamente:");
+                    while (ciudad.isEmpty() || ciudad.matches(".*\\d.*")) {
+                        if (ciudad.isEmpty()) {
+                            System.out.println("La ciudad es obligatoria, introdúzcalo nuevamente");
+                        } else {
+                            System.out.println("La ciudad no puede contener números, introdúzca nuevamente");
+                        }
                         ciudad = input.nextLine();
                     }
 
@@ -93,24 +102,29 @@ public class Main {
                     /******************** Telefono ********************/
                     System.out.println("Introduzca el telefono");
                     String telefono = input.nextLine();
-                    while (telefono.isEmpty()) {
-                        System.out.println("El telefono es obligatorio, introdúzcalo nuevamente:");
+                    while (telefono.isEmpty() || !telefono.matches("\\d+")) {
+                        if (telefono.isEmpty()) {
+                            System.out.println("El telefono es obligatorio, introdúzcalo nuevamente");
+                        } else {
+                            System.out.println("El telefono no puede contener letras, introdúzcalo nuevamente");
+                        }
                         telefono = input.nextLine();
                     }
 
 
                     /******************** Correo ********************/
                     String correo = "";
+                    System.out.println("Introduzca el correo:");
                     do {
-                        System.out.println("Introduzca el correo:");
                         correo = input.nextLine().trim();
 
                         if (correo.isEmpty()) {
-                            System.out.println("El correo es obligatorio, introdúzcalo nuevamente");
-                        } else if (!correo.contains("@")) {
-                            System.out.println("Introduzca un correo válido (Debe contener '@')");
+                            System.out.println("El correo es obligatorio, introdúzcalo nuevamente:");
+                        } else if (!correo.contains("@") || !correo.contains(".")) {
+                            System.out.println("Introduzca un correo válido (Debe contener '@' y '.'):");
                             correo = "";
                         }
+
                     } while (correo.isEmpty());
 
 
@@ -144,7 +158,19 @@ public class Main {
                     em.getTransaction().begin();
                     em.persist(usuario);
                     em.getTransaction().commit();
-                    System.out.println("Usuario agregado correctamente.");
+                    
+                    System.out.println("Usuario agregado correctamente:");
+                    System.out.println(
+                            "-----------------------------------" +
+                                    "\nNombre: " + nombre +
+                                    "\nApellido: " + apellido +
+                                    "\nSexo: " + sexo +
+                                    "\nCiudad: " + ciudad +
+                                    "\nTeléfono: " + telefono +
+                                    "\nCorreo: " + correo +
+                                    "\nFecha de nacimiento: " + nacimiento.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) +
+                                    "\n-----------------------------------"
+                    );
                     break;
 
                     /******************** Listar ********************/
@@ -179,15 +205,32 @@ public class Main {
                             /******************** Nombre ********************/
                             System.out.println("Nombre actual: " + usuarioModificar.getNombre());
                             System.out.println("    - Introduzca el nuevo nombre, si no desea editar pulse enter: ");
-                            String nuevoNombre = input.nextLine();
-                            if (!nuevoNombre.isEmpty()) usuarioModificar.setNombre(nuevoNombre);
+                            String nuevoNombre = input.nextLine();if (!nuevoNombre.isEmpty()) {
+                                if (nuevoNombre.matches(".*\\d.*")) {
+                                    System.out.println("El nombre no puede contener números. No se realizaron cambios.");
+                                } else {
+                                    usuarioModificar.setNombre(nuevoNombre);
+                                    System.out.println("nombre modificado correctamente.");
+                                }
+                            } else {
+                                System.out.println("El nombre no fue modificado (se mantiene el anterior).");
+                            }
 
 
                             /******************** Apellidos ********************/
                             System.out.println("Apellido actual: " + usuarioModificar.getApellido());
                             System.out.println("    - Introduzca el nuevo apellido, si no desea editar pulse enter: ");
                             String nuevosApellidos = input.nextLine();
-                            if (!nuevosApellidos.isEmpty()) usuarioModificar.setApellido(nuevosApellidos);
+                            if (!nuevosApellidos.isEmpty()) {
+                                if (nuevosApellidos.matches(".*\\d.*")) {
+                                    System.out.println("El apellido no puede contener números. No se realizaron cambios.");
+                                } else {
+                                    usuarioModificar.setApellido(nuevosApellidos);
+                                    System.out.println("Apellido modificado correctamente.");
+                                }
+                            } else {
+                                System.out.println("El apellido no fue modificado (se mantiene el anterior).");
+                            }
 
 
                             /******************** Sexo ********************/
@@ -203,7 +246,16 @@ public class Main {
                             System.out.println("Ciudad actual: " + usuarioModificar.getCiudad());
                             System.out.println("    - Introduzca ela nueva ciudad, si no desea editar pulse enter: ");
                             String nuevaCiudad = input.nextLine();
-                            if (!nuevaCiudad.isEmpty()) usuarioModificar.setCiudad(nuevaCiudad);
+                            if (!nuevaCiudad.isEmpty()) {
+                                if (nuevaCiudad.matches(".*\\d.*")) {
+                                    System.out.println("La ciudad no puede contener números. No se realizaron cambios.");
+                                } else {
+                                    usuarioModificar.setCiudad(nuevosApellidos);
+                                    System.out.println("Ciudad modificada correctamente.");
+                                }
+                            } else {
+                                System.out.println("La ciudad no fue modificado (se mantiene el anterior).");
+                            }
 
 
                             /******************** Fecha de nacimiento ********************/
@@ -231,17 +283,31 @@ public class Main {
                             System.out.println("Numero de telefono actual: " + usuarioModificar.getTelefono());
                             System.out.println("    - Introduzca el nuevo numero de telefono, si no desea editar pulse enter: ");
                             String nuevoTelefono = input.nextLine();
-                            if (!nuevoTelefono.isEmpty()) usuarioModificar.setTelefono(nuevoTelefono);
+                            if (!nuevoTelefono.isEmpty()) {
+                                if (nuevoTelefono.matches("\\d+")) { // Solo dígitos
+                                    usuarioModificar.setTelefono(nuevoTelefono);
+                                    System.out.println("Teléfono modificado correctamente.");
+                                } else {
+                                    System.out.println("El teléfono solo puede contener números. No se realizaron cambios.");
+                                }
+                            } else {
+                                System.out.println("El teléfono no fue modificado (se mantiene el anterior).");
+                            }
 
 
                             /******************** Correo ********************/
-                            System.out.println("Correo actual" + usuarioModificar.getCorreo());
+                            System.out.println("Correo actual: " + usuarioModificar.getCorreo());
                             System.out.println("    - Introduzca el nuevo correo, si no desea editar pulse enter: ");
                             String nuevoEmail = input.nextLine();
-                            if (!nuevoEmail.isEmpty() && nuevoEmail.contains("@")) {
-                                usuarioModificar.setCorreo(nuevoEmail);
-                            } else if (!nuevoEmail.isEmpty()) {
-                                System.out.println("Correo inválido. Se mantiene el original.");
+                            if (!nuevoEmail.isEmpty()) {
+                                if (nuevoEmail.contains("@") && nuevoEmail.contains(".")) {
+                                    usuarioModificar.setCorreo(nuevoEmail);
+                                    System.out.println("Correo modificado correctamente.");
+                                } else {
+                                    System.out.println("Correo inválido. Se mantiene el original.");
+                                }
+                            } else {
+                                System.out.println("El correo no fue modificado (se mantiene el anterior).");
                             }
 
 
