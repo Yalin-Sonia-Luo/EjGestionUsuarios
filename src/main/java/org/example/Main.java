@@ -158,7 +158,7 @@ public class Main {
                     em.getTransaction().begin();
                     em.persist(usuario);
                     em.getTransaction().commit();
-                    
+
                     System.out.println("Usuario agregado correctamente:");
                     System.out.println(
                             "-----------------------------------" +
@@ -300,6 +300,7 @@ public class Main {
                             System.out.println("    - Introduzca el nuevo correo, si no desea editar pulse enter: ");
                             String nuevoEmail = input.nextLine();
                             if (!nuevoEmail.isEmpty()) {
+                                //Si el nuevo correo cumple con los requisitos lo modificará.
                                 if (nuevoEmail.contains("@") && nuevoEmail.contains(".")) {
                                     usuarioModificar.setCorreo(nuevoEmail);
                                     System.out.println("Correo modificado correctamente.");
