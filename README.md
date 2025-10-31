@@ -17,13 +17,13 @@ El proyecto desarrollado en **Java** permite la gestion de usuarios mediante ope
 Tecnologías utilizadas
 
     | Tecnología |    Descripción    |
-    | **Java 21 (JDK 21) **| Lenguaje principal |
-    | **JPA (Jakarta Persistence API)** | Mapeo objeto-relacional |
-    | **Hibernate** | Implementación de JPA |
-    | **MySQL** | Base de datos relacional |
-    | **XAMPP** | Servidor local para MySQL |
-    | **Maven** | Gestión de dependencias |
-    | **IntelliJ IDEA** | Entorno de desarrollo |
+    | Java 21 (JDK 21) | Lenguaje principal |
+    | JPA (Jakarta Persistence API) | Mapeo objeto-relacional |
+    | Hibernate | Implementación de JPA |
+    | MySQL | Base de datos relacional |
+    | XAMPP | Servidor local para MySQL |
+    | Maven | Gestión de dependencias |
+    | IntelliJ IDEA | Entorno de desarrollo |
 
 
 ***Gestión de usuarios***
@@ -46,9 +46,9 @@ Tecnologías utilizadas
 ***IMPORTANTE***
 Antes de ejecutar el proyecto, revisa y ajusta las credenciales en `persistence.xml`:
   - La contraseña y el usuario que usa MySQL los que configuraste cuando instalaste MySQL (o XAMPP). Si no configuraste nada por defecto, el usuario será *root* y la contraseña vacía es decir "".
-
-<property name="jakarta.persistence.jdbc.user" value="TU_USUARIO"/>
-<property name="jakarta.persistence.jdbc.password" value="TU_CONTRASEÑA"/>
+En caso contrario deberás modificar los siguientes datos:
+  - <property name="jakarta.persistence.jdbc.user" value="TU_USUARIO"/>
+  - <property name="jakarta.persistence.jdbc.password" value="TU_CONTRASEÑA"/>
 
 Configuración de persistence.xml (ubicado en src/main/resources/META-INF/) con credenciales:
 
